@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>X 长文封面生成器</title>
+  <meta name="description" content="输入标题和副标题，选择配色，实时预览并下载 5:2 的 X 长文封面 PNG。">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/noto-serif-sc-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/noto-sans-sc-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="is-loading">
+  <div class="wrap">
+    <header class="top">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">封</div>
+        <div>
+          <h1>封面</h1>
+          <p>X 长文封面生成器</p>
+        </div>
+      </div>
+      <p class="specs">
+        <strong>比例 5:2</strong>
+        导出 2400×960 PNG
+      </p>
+    </header>
+
+    <main class="workspace">
+      <section class="panel" aria-label="封面内容">
+        <label class="field">
+          <span>标题</span>
+          <textarea id="title" rows="3" spellcheck="false" placeholder="例如：在字与字之间，留下刚好的呼吸">在字与字之间，留下刚好的呼吸</textarea>
+        </label>
+        <label class="field">
+          <span>副标题</span>
+          <textarea id="subtitle" rows="2" spellcheck="false" placeholder="例如：写在长文前面的一张封面">写在长文前面的一张封面</textarea>
+        </label>
+
+        <div class="palette-label" id="palette-label">配色</div>
+        <div id="palettes" class="palettes" role="radiogroup" aria-labelledby="palette-label"></div>
+
+        <button id="download" class="download" type="button" disabled>
+          <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M8 1.5v8.2M4.8 7.2 8 10.4l3.2-3.2M3 13.5h10" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span id="download-label">下载 PNG</span>
+        </button>
+        <p id="fit-note" class="fit-note" aria-live="polite"></p>
+        <p class="hint">封面在浏览器里生成，不会上传。Ctrl 或 ⌘ 加 Enter 也可以下载。</p>
+        <p id="font-status" class="font-status">正在加载中文字体…</p>
+      </section>
+
+      <section class="stage" aria-label="预览">
+        <div class="stage-head">
+          <strong>预览</strong>
+          <span>与下载图使用同一套字体和排版</span>
+        </div>
+        <div class="canvas-wrap">
+          <canvas id="cover" width="2400" height="960" role="img" aria-label="封面预览"></canvas>
+          <p id="empty-hint" class="empty-hint" hidden>输入标题，这里会即时变成封面</p>
+        </div>
+        <div class="stage-foot">
+          <span>2400 × 960 像素</span>
+          <span>5 : 2</span>
+        </div>
+      </section>
+    </main>
+  </div>
+  <noscript><p>需要启用 JavaScript。封面在你的浏览器里本地生成。</p></noscript>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
